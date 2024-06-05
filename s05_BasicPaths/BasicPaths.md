@@ -65,3 +65,38 @@ are optional. We skip them this time.
     stroke-linecap="round" 
   />
 </svg>
+
+## Heart Icon
+
+Here's another example made with a move to command and two line to commands.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path 
+    d="
+        M -30 -20 
+        L   0  10 
+        L  30 -20"
+    fill="none"
+    stroke="black"
+    stroke-width="80"
+    stroke-linecap="round"
+  />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path 
+    d="
+        M -30 -20 
+        L   0  10 
+        L  30 -20"
+    fill="none"
+    stroke="black"
+    stroke-width="80"
+    stroke-linecap="round"
+  />
+</svg>
+
+In the example above if we reduce the value of the `stroke-width` property, then we realize that the code above is 
+actually a simple V shape.
