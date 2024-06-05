@@ -100,3 +100,98 @@ Here's another example made with a move to command and two line to commands.
 
 In the example above if we reduce the value of the `stroke-width` property, then we realize that the code above is 
 actually a simple V shape.
+
+## Arrow Icon
+
+Then to get to our example for today, we can draw an arrow in a very similar way. We start with a line in the middle, 
+then we continue the line to draw the upper wing.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="
+        M -70 0 
+        L 70 0 
+        L 30 -50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="
+        M -70 0 
+        L 70 0 
+        L 30 -50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+You might note that with the previous example, we also had a `stroke-linejoin` property to make the join rounded. 
+It works in a similar way to `stroke-linecap` but that only affects the end of the lines. 
+Without that property, the same line would look as follows.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="
+        M -70 0 
+        L 70 0 
+        L 30 -50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+  />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="
+        M -70 0 
+        L 70 0 
+        L 30 -50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+  />
+</svg>
+
+Then we can finish the line with moving to the end of the horizontal line again, and drawing a straight line 
+downwards to draw the lower wing of the arrow. You might notice that at the bottom of this and other pages in the 
+navigation button we include a similar SVG.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="M -70 0 L 70 0 L 30 -50 M 70 0 L 30 50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path
+    d="M -70 0 L 70 0 L 30 -50 M 70 0 L 30 50"
+    fill="none"
+    stroke="#D1495B"
+    stroke-width="25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
