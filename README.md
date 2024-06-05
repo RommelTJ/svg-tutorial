@@ -2,7 +2,7 @@
 
 Learn how to code images in HTML with SVG
 
-Version: 0.4.0 - 03 Jun 2024
+Version: 0.5.0 - 05 Jun 2024
 
 ## Description
 
