@@ -195,3 +195,8 @@ navigation button we include a similar SVG.
     stroke-linejoin="round"
   />
 </svg>
+
+## Exercise: How would you do a full-screen icon?
+
+Create a full-screen icon.
+
