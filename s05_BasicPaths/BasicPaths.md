@@ -204,18 +204,10 @@ Create a full-screen icon.
 <svg width="200" height="200" viewBox="-100 -100 200 200">
     <path 
       d="
-      M -100 -30
-      L -30 -30
-      L -30 -100
-      M 100 -30
-      L 30 -30
-      L 30 -100
-      M -100 30
-      L -30 30
-      L -30 100
-      M 100 30
-      L 30 30
-      L 30 100
+      M -100 -30 L -30 -30 L -30 -100
+      M 100 -30 L 30 -30 L 30 -100
+      M -100 30 L -30 30 L -30 100
+      M 100 30 L 30 30 L 30 100
       "
       fill="none" 
       stroke="black" 
@@ -225,23 +217,15 @@ Create a full-screen icon.
 ```
 
 <svg width="200" height="200" viewBox="-100 -100 200 200">
-  <path
-    d="
-      M -100 -30
-      L -30 -30
-      L -30 -100
-      M 100 -30
-      L 30 -30
-      L 30 -100
-      M -100 30
-      L -30 30
-      L -30 100
-      M 100 30
-      L 30 30
-      L 30 100
+    <path 
+      d="
+      M -100 -30 L -30 -30 L -30 -100
+      M 100 -30 L 30 -30 L 30 -100
+      M -100 30 L -30 30 L -30 100
+      M 100 30 L 30 30 L 30 100
       "
-    fill="none"
-    stroke="black"
-    stroke-width="10"
-  />
+      fill="none" 
+      stroke="black" 
+      stroke-width="10"
+    />
 </svg>
