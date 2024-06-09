@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <title>Clock</title>
 </head>
-<script>
-  const hoursElement = document.getElementById("hours");
-  const minutesElement = document.getElementById("minutes");
-
-  const hour = new Date().getHours() % 12;
-  const minute = new Date().getMinutes();
-
-  hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
-  minutesElement.setAttribute("transform", `rotate(${(360 / 60) * minute})`);
-</script>
 <body>
 <svg width="200" height="200" viewBox="-100 -100 200 200">
     <rect x="-100" y="-100" width="200" height="200" fill="#CD803D" />
@@ -35,4 +25,14 @@
     </g>
 </svg>
 </body>
+<script>
+  const hoursElement = document.getElementById("hours");
+  const minutesElement = document.getElementById("minutes");
+
+  const hour = new Date().getHours() % 12;
+  const minute = new Date().getMinutes();
+
+  hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
+  minutesElement.setAttribute("transform", `rotate(${(360 / 60) * minute})`);
+</script>
 </html>
