@@ -58,3 +58,23 @@ to continue the previous line segment and then place the second control point in
   />
 </svg>
 
+## How to draw a Profile icon with SVG
+
+A simple icon we can create with cubic Béziers is a profile icon. 
+The head is a circle, and the body is a cubic Bézier and a straight line.
+
+In this example, however, we do not use the `L` command to finish the body. 
+Instead, we use the `Z` command to close the path. 
+The `Z` command closes the path by drawing a straight line from the current point to the starting point.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200" fill="none" stroke="black" stroke-width="10">
+  <circle cy="-40" r="20" />
+  <path d="M -50,70 C -50,-20 50,-20 50,70 Z"/>
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200" fill="none" stroke="black" stroke-width="10">
+  <circle cy="-40" r="20" />
+  <path d="M -50,70 C -50,-20 50,-20 50,70 Z"/>
+</svg>
