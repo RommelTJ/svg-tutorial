@@ -78,3 +78,62 @@ The `Z` command closes the path by drawing a straight line from the current poin
   <circle cy="-40" r="20" />
   <path d="M -50,70 C -50,-20 50,-20 50,70 Z"/>
 </svg>
+
+## How to draw a gift box with SVG
+
+In this example, the ribbon of the gift box uses a cubic Bezier that smoothly continues the previous straight line 
+and then turns back to the direction of the upcoming line.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path d="M 0 0 L 30 0 C 50 0 50 -25 30 -15 L 0 0" fill="none" stroke="red" stroke-width="4" />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <path d="M 0 0 L 30 0 C 50 0 50 -25 30 -15 L 0 0" fill="none" stroke="red" stroke-width="4" />
+</svg>
+
+Apart from the cubic Béziers the rest of this image is mainly just a few rectangles and a circle.
+
+```svg
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <circle cx="0" cy="-50" r="10" fill="#a9172a" />
+  <rect class="box" x="-60" y="-40" width="120" height="100" />
+  <rect class="box" x="-70" y="-47" width="140" height="20" />
+  <rect class="stripe" x="-20" y="-40" width="40" height="100" />
+  <rect class="stripe" x="-25" y="-47" width="50" height="20" />
+  <path class="ribbon" d="M 0 -50 L 30 -50 C 50 -50 50 -70 30 -65 L 0 -50" />
+  <path class="ribbon" d="M 0 -50 L -30 -50 C -50 -50 -50 -70 -30 -65 L 0 -50" />
+</svg>
+```
+
+```css
+.box {
+  fill: #d1495b;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.stripe {
+  fill: white;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.ribbon {
+  stroke: #b73a3b;
+  stroke-width: 4px;
+  fill: none;
+}
+```
+
+<svg width="200" height="200" viewBox="-100 -100 200 200">
+  <circle cx="0" cy="-50" r="10" fill="#a9172a" />
+  <rect class="box" x="-60" y="-40" width="120" height="100" />
+  <rect class="box" x="-70" y="-47" width="140" height="20" />
+  <rect class="stripe" x="-20" y="-40" width="40" height="100" />
+  <rect class="stripe" x="-25" y="-47" width="50" height="20" />
+  <path class="ribbon" d="M 0 -50 L 30 -50 C 50 -50 50 -70 30 -65 L 0 -50" />
+  <path class="ribbon" d="M 0 -50 L -30 -50 C -50 -50 -50 -70 -30 -65 L 0 -50" />
+</svg>
