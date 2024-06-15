@@ -99,3 +99,23 @@ to maintain the same start and end points. In case we draw a circle, the rotatio
 <svg width="200" height="200" viewBox="-100 -100 200 200">
   <path d="M -40 -40 A 70 40 30 1 1 40 40" fill="none" stroke="red" stroke-width="2" />
 </svg>
+
+## Drawing a Moon Icon
+
+After drawing a Sun Icon it's time to draw a Moon icon. We draw a single path. We start with a move-to command to 
+get to the starting position (upper corner). Then, we draw two arcs. We draw a longer arc to get down to the bottom 
+corner and then return to the starting position with a shorter arc.
+
+```svg
+<svg width="200" height="200" viewBox="0 0 30 30">
+  <path d="M 23, 5 A 12 12 0 1 0 23, 25A 12 12 0 0 1 23, 5" />
+</svg>
+```
+
+<svg width="200" height="200" viewBox="0 0 30 30">
+  <path d="M 23, 5 A 12 12 0 1 0 23 25 A 12 12 0 0 1 23 5" />
+</svg>
+
+Note how these two arcs look very different despite using the same radiuses. The large arc flag and the sweep flag 
+mirror each other. The first arc goes the long way between the two endpoints, and the second goes the short way. 
+Note that the first one goes counterclockwise (as it goes down), and the second goes clockwise (as it goes up).
