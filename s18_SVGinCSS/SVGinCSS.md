@@ -85,3 +85,42 @@ button * {
 }
 ```
 
+## Background Patterns with SVG in CSS
+
+We can also use this technique to generate a background pattern. By default, if the image we define in 
+`background-image` is smaller than the element itself, then the image will repeat itself.
+
+In the main example for today we simply repeat the following SVG:
+
+```svg
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'>
+  <polyline fill='none' stroke='#0c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' />
+</svg>
+```
+
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'>
+  <polyline fill='none' stroke='#0c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' />
+</svg>
+
+In this example we encode some special characters in the inlined string. In the example below we encode the pointy 
+brackets (`<` and `>`) and the `#` key in the color value to make sure it works in every browser. This makes it 
+hard to read, but what we have here is still a simple SVG.
+
+```html
+<html lang="en">
+  <style>
+    .background {
+      background-color: #38755b;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'%3E%3Cpolyline fill='none' stroke='%230c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' /%3E%3C/svg%3E");
+    }  
+  </style>
+  <body>
+    <div class="background" />
+  </body>
+</html>
+```
+
+You might also note that this SVG image doesn't even have a background color set. We set that in CSS.
+
+This is a great way to create background patterns with only a few lines of code in CSS. If you like this idea check 
+out svgbackgrounds.com for a lot more great patterns.
