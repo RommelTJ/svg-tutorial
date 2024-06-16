@@ -1,0 +1,126 @@
+# How to Inline SVG in CSS
+
+In many cases, an inlined SVG feels like a bit of noise in HTML. If we add an icon then the icon itself feels more 
+like styling than content that should be part of the DOM structure. The good news is, we can move SVG images 
+entirely into CSS.
+
+For example, let's take the close button on this page at the top right corner. In HTML the close button is simply 
+an anchor element with a class: `<a href="/" class="close"></a>`
+
+Then in CSS we can set a `background-image` property. For this CSS property, we usually provide a link to an image, 
+but we can also inline an SVG:
+
+```css
+.close {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'><path d='M 30 30 L 70 70 M 30 70 L 70 30' stroke='white' stroke-width='10' /></svg>");
+}
+```
+
+The inlined SVG above is simply an X as follows (except that the stroke property is set to black in this case for 
+visibility). The gray circle around it is made with CSS (by setting the `background-color` and the `border-radius` 
+properties).
+
+```svg
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'>
+  <path d='M 30 30 L 70 70 M 30 70 L 70 30' stroke='black' stroke-width='10' />
+</svg>
+```
+
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'>
+  <path d='M 30 30 L 70 70 M 30 70 L 70 30' stroke='black' stroke-width='10' />
+</svg>
+
+When we inline an SVG in CSS, we need to set the XML namespace property. Earlier we inlined SVGs into HTML and in 
+that case it's optional. In CSS we have to set the `xmlns` property.
+
+## Custom Mouse Cursor with SVG in CSS
+
+Have you ever wondered how to make your website stand out? One way is to set custom mouse cursors. Take a look at 
+this page. Do you notice how the cursor isn't the usual one? I've taken over the custom cursors from figma.com.
+
+Here's an example of a custom mouse cursor that’s a simple arrow.
+
+```svg
+<svg width='26' height='31'>
+  <path d='M 3 3 L 7 26 L 12 16 L 23 14 Z' fill='white' stroke='black' stroke-width='2.5' />
+</svg>
+```
+
+<svg width='26' height='31'>
+  <path d='M 3 3 L 7 26 L 12 16 L 23 14 Z' fill='white' stroke='black' stroke-width='2.5' />
+</svg>
+
+Then, you can override the value of the default cursor in the following way. Note that changing the default 
+cursor will override all types of cursors on your page.
+
+```css
+body {
+  cursor: url("data:image/svg+xml,<svg width='26' height='31' xmlns='http://www.w3.org/2000/svg'><path fill='white' stroke='black' stroke-width='2.5' d='M 2.549 2.935 L 6.993 26.043 L 11.646 16.041 L 22.993 14.425 Z' /></svg>"),
+    auto;
+}
+```
+
+Changing the cursor the above way will override all types of cursors on your page. Be sure to set the cursor back to 
+the initial value for HTML elements that require something else (this list is not comprehensive).
+
+```css
+p,
+h1,
+h2,
+input[type="text"] {
+  cursor: text;
+}
+
+a,
+a *,
+button,
+button * {
+  cursor: pointer;
+}
+```
+
+## Background Patterns with SVG in CSS
+
+We can also use this technique to generate a background pattern. By default, if the image we define in 
+`background-image` is smaller than the element itself, then the image will repeat itself.
+
+In the main example for today we simply repeat the following SVG:
+
+```svg
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'>
+  <polyline fill='none' stroke='#0c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' />
+</svg>
+```
+
+<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'>
+  <polyline fill='none' stroke='#0c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' />
+</svg>
+
+In this example we encode some special characters in the inlined string. In the example below we encode the pointy 
+brackets (`<` and `>`) and the `#` key in the color value to make sure it works in every browser. This makes it 
+hard to read, but what we have here is still a simple SVG.
+
+```html
+<html lang="en">
+  <style>
+    .background {
+      background-color: #38755b;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 120 120'%3E%3Cpolyline fill='none' stroke='%230c5c4c' stroke-width='42.4' points='-30 0 60 90 150 0' /%3E%3C/svg%3E");
+    }  
+  </style>
+  <body>
+    <div class="background" />
+  </body>
+</html>
+```
+
+You might also note that this SVG image doesn't even have a background color set. We set that in CSS.
+
+This is a great way to create background patterns with only a few lines of code in CSS. If you like this idea check 
+out svgbackgrounds.com for a lot more great patterns.
