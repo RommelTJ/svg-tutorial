@@ -1,0 +1,171 @@
+# How to Break Down an SVG Image into Multiple Components
+
+If you've made it this far, give yourself a well-deserved pat on the back. You just learned the basics of SVG with 
+many cool use cases.
+
+If you continue your journey and start writing more complex SVGs, their code might get a bit out of hand. Then, you 
+can break them down into components.
+
+Let's take our forest example a step further. We'll add a snowing effect and clip the scene with a circle. That is 
+already enough complexity to break down our image into multiple components. We use React again, but the same concept 
+applies to any other front-end library you might use.
+
+In the root component, we have the SVG element itself and take care of clipping. We define a `clip-path`, apply it, 
+and add a circle to show where the clip path is. That's enough complexity in one component. We move the content that 
+we clip into another component.
+
+```javascript
+function SnowGlobe() {
+  return (
+    <svg width="200" height="200" viewBox="-100 -100 200 200">
+      <clipPath id="snow-globe">
+        <circle cx="0" cy="0" r="80" />
+      </clipPath>
+
+      <g clip-path="url(#snow-globe)">
+        <Content />
+      </g>
+
+      <circle
+        r="80"
+        fill="none"
+        stroke="gray"
+        stroke-width="2"
+      />
+    </svg>
+  );
+}
+```
+
+Let's create another component to generate the snow globe's content. Here, we draw the background and generate trees 
+and snowflakes based on some data. Because this component returns multiple things, we wrap the content in a 
+group element.
+
+```javascript
+function Content() {
+  const trees = [
+    { x: -20, y: 25, scale: 1.8 },
+    { x: -10, y: 40, scale: 1 },
+    { x: 30, y: 40, scale: 0.8 },
+    { x: 40, y: 30, scale: 1.2 },
+  ];
+
+  const snowflakes = [
+    { x: 0, y: 0, big: true, fast: true },
+    { x: -50, y: -20, big: true, fast: true, opaque: true },
+    { x: 30, y: -40, big: true, fast: true },
+    { x: 50, y: -20, big: true, fast: true, opaque: true },
+    { x: 30, y: 50, big: true },
+    { x: -70, y: -80, big: true, opaque: true },
+    { x: 30, y: 50, big: true },
+    { x: 90, y: -80, big: true, opaque: true },
+    { x: 10, y: -50 },
+    { x: -50, y: -60, opaque: true },
+    { x: 30, y: 70 },
+    { x: 10, y: -80, opaque: true },
+  ];
+
+  return (
+    <g>
+      <Background />
+
+      {trees.map((tree, index) => (
+        <Tree
+          key={index}
+          x={tree.x}
+          y={tree.y}
+          scale={tree.scale}
+        />
+      ))}
+
+      {snowflakes.map((snowflake, index) => (
+        <Snowflake
+          key={index}
+          x={snowflake.x}
+          y={snowflake.y}
+          big={snowflake.big}
+          fast={snowflake.big}
+        />
+      ))}
+    </g>
+  );
+}
+```
+
+The background element returns a rectangle to set the background color and a circle that serves as the ground. 
+Again, we wrap everything into a group element.
+
+```javascript
+function Background() {
+  return (
+    <g>
+      <rect x="-100" y="-100" width="200" height="200" fill="#F1DBC3"></rect>
+
+      <circle cx="0" cy="380" r="350" fill="#F8F4E8"></circle>
+    </g>
+  );
+}
+```
+
+The Tree component generates and places a tree in the correct position and size. It receives the necessary attributes 
+from the Content component as props.
+
+```javascript
+function Three({ x, y, scale }) {
+  return (
+    <g transform={`scale(${scale}), translate(${x} ${y})`}>
+      <polygon
+        points="-10,0 10,0 0 -50"
+        fill="#38755b"
+      ></polygon>
+
+      <line
+        x2="0"
+        y2="10"
+        stroke="#778074"
+        stroke-width="2"
+      ></line>
+    </g>
+  );
+}
+```
+
+Finally, the Snowflake component generates a snowflake based on properties like position, size, and opaqueness. We 
+also add an animation in CSS to make them look like snowing. The animation is glitchy and not very sophisticated, but 
+you get the idea.
+
+```javascript
+function Snowflake({ x, y, big, fast, opaque }) {
+  let className = "snowflake";
+  if (fast) className += " fast";
+  if (opaque) className += " opaque";
+
+  return <circle cx={x} cy={y} r={big ? 5 : 3} fill="white" className={className}></circle>;
+}
+```
+
+```css
+.snowflake {
+  animation-duration: 5s;
+  animation-name: snowing;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  .opaque {
+    opacity: 0.7;
+  }
+
+  .fast {
+    animation-duration: 3s;
+  }
+}
+
+@keyframes snowing {
+  from {
+    transform: translate(0, -100px);
+  }
+  to {
+    transform: translate(0, 100px);
+  }
+}
+```
